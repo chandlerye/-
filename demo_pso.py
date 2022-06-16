@@ -2,7 +2,7 @@ import numpy as np
 import random
 
 class PSO_model:
-    def __init__(self,w,c1,c2,r1,r2,N,D,M):
+    def __init__(self,w,c1,c2,r1,r2,N,D,M,func):
         self.w = w # 惯性权值
         self.c1=c1
         self.c2=c2
@@ -17,15 +17,11 @@ class PSO_model:
         self.gbest=np.zeros((1,self.D))  #种群最优值
         self.p_fit=np.zeros(self.N)
         self.fit=1e8 #初始化全局最优适应度
+        self.func = func   #优化函数
 
 # 目标函数，也是适应度函数（求最小化问题）
-    def function(self,x):
-        A = 10
-        x1=x[0]
-        x2=x[1]
-        # Z = 2 * A + x1 ** 2 - A * np.cos(2 * np.pi * x1) + x2 ** 2 - A * np.cos(2 * np.pi * x2)
-        Z = x1**2 + x2 + 10
-        return Z
+    def function(self,x):   #func是传入的函数，x是func所需的参数
+        return self.func(x)
 
      # 初始化种群
     def init_pop(self):
@@ -57,15 +53,22 @@ class PSO_model:
         print("最优值：",self.fit,"位置为：",self.gbest)
 
 
+def func_examples(x):   #测试函数
+    a1 = x[0]
+    a2 = x[1]
+    return a1**2 + 10
+
+#  演示
 if __name__ == '__main__':
     # w,c1,c2,r1,r2,N,D,M参数初始化
     w=random.random()
     c1=c2=2#一般设置为2
-    r1=0.7
+    r1=0.7 
     r2=0.5
     N=30
     D=2
     M=200
-    pso_object=PSO_model(w,c1,c2,r1,r2,N,D,M)#设置初始权值
+
+    pso_object=PSO_model(w,c1,c2,r1,r2,N,D,M,func_examples)#设置初始权值
     pso_object.init_pop()
     pso_object.update()
