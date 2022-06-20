@@ -6,3 +6,5 @@
 ## 特征计算
 ### [Fun_SelfSampEn.m 样本熵](https://github.com/chandlerye/Algorithm-set/blob/main/Matlab/Fun_SelfSampEn.m)
 ### [Fun_MutualSampEn.m 互相本熵](https://github.com/chandlerye/Algorithm-set/blob/main/Matlab/Fun_MutualSampEn.m)
+### [中心距计算](https://github.com/chandlerye/Algorithm-set/blob/main/Matlab/Fun_CalMoment.m)
+### [二进制转十进制排序](https://github.com/chandlerye/Algorithm-set/blob/main/Matlab/Fun_SortNat.m)
